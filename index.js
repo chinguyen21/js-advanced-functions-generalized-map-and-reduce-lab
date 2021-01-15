@@ -3,14 +3,14 @@
 const map = (arr, func) => arr.map(ele => func(ele))
 
 const reduce = (arr, func, startingPoint) => {
-  if (startingPoint) {
-  return arr.reduce((total, ele) => func(total, ele),startingPoint)
-  } else {
+  let r = startingPoint
+  if (!startingPoint) {
     if (arr.every(ele => typeof ele === "number")) {
-      return arr.reduce((total, ele) => func(total, ele),0)
+      r = 0
     } else {
-      return arr.reduce((total, ele) => func(total, ele), true)
+      r = true
     }
-  }
-
+  }        
+  return arr.reduce((total, ele) => func(total, ele),r)
+          
 }
